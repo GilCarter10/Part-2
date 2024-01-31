@@ -1,5 +1,7 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Plane : MonoBehaviour
@@ -10,12 +12,36 @@ public class Plane : MonoBehaviour
     LineRenderer lineRenderer;
     Vector2 currentPosition;
     Rigidbody2D rb;
-    public float speed = 1;
+    float speed;
     public AnimationCurve landing;
     float landingTimer;
 
+    List<Sprite> spritesList;
+    public Sprite s1;
+    public Sprite s2;
+    public Sprite s3;
+    public Sprite s4;
+    
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
+        Vector3 myPosition = transform.position;
+        myPosition.x = Random.Range(-5, 5);
+        myPosition.y = Random.Range(-5, 5);
+        Quaternion myRotation = transform.rotation;
+        myRotation.z = Random.Range(0, 360);
+        speed = Random.Range(1, 3);
+        
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spritesList = new List<Sprite>();
+        spritesList.Add(s1);
+        spritesList.Add(s2);
+        spritesList.Add(s3);
+        spritesList.Add(s4);
+        spriteRenderer.sprite = spritesList[Random.Range(0,3)];
+
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
