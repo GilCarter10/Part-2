@@ -26,7 +26,11 @@ public class Plane : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Vector3 myPosition;
 
-    
+    public GameObject runway;
+    public bool overlap;
+    public int score;
+
+    CircleCollider2D collider;
 
     void Start()
     {
@@ -51,6 +55,11 @@ public class Plane : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
 
         rb = GetComponent<Rigidbody2D>();
+
+        collider = GetComponent<CircleCollider2D>();
+        
+
+        score = 0;
     }
 
     void FixedUpdate()
@@ -68,6 +77,8 @@ public class Plane : MonoBehaviour
     void Update()
     {
         Vector3 myPosition = transform.position;
+
+        /*
         if (Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.1f * Time.deltaTime;
@@ -78,6 +89,7 @@ public class Plane : MonoBehaviour
             }
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, interpolation);
         }
+        */
 
         lineRenderer.SetPosition(0, transform.position);
         if (points.Count > 0)
@@ -99,7 +111,21 @@ public class Plane : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+
+        if (collider.OverlapPoint(runway.transform.position))
+        {
+            overlap = true;
+            landingTimer += 0.1f * Time.deltaTime;
+            float interpolation = landing.Evaluate(landingTimer);
+            if (transform.localScale.z < 0.1f)
+            {
+                Destroy(gameObject);
+                score += 1;
+            }
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, interpolation);
+            
+        }
 
     }
 
