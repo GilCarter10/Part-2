@@ -2,6 +2,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Plane : MonoBehaviour
@@ -23,6 +24,9 @@ public class Plane : MonoBehaviour
     public Sprite s4;
     
     SpriteRenderer spriteRenderer;
+    Vector3 myPosition;
+
+    
 
     void Start()
     {
@@ -88,6 +92,12 @@ public class Plane : MonoBehaviour
                 if (lineRenderer.positionCount != 0) lineRenderer.positionCount--;
             }
         }
+
+        if (myPosition.x < -10 || myPosition.x > 10 || myPosition.y < -5 || myPosition.y > 5)
+        {
+            Debug.Log("yes");
+            Destroy(gameObject);
+        }
     }
 
     void OnMouseDown()
@@ -112,5 +122,33 @@ public class Plane : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.red;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.white;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        float dist = Vector3.Distance(collision.gameObject.transform.position, transform.position);
+        
+        if(dist < 2)
+        {
+            spriteRenderer.color = Color.red; //signifier for the player
+        }
+        
+        if (dist < 0.75)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
 
 }
