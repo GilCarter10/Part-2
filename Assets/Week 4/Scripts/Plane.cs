@@ -67,6 +67,7 @@ public class Plane : MonoBehaviour
 
     void Update()
     {
+        Vector3 myPosition = transform.position;
         if (Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.1f * Time.deltaTime;
@@ -93,11 +94,13 @@ public class Plane : MonoBehaviour
             }
         }
 
+        
         if (myPosition.x < -10 || myPosition.x > 10 || myPosition.y < -5 || myPosition.y > 5)
         {
-            Debug.Log("yes");
             Destroy(gameObject);
         }
+        
+
     }
 
     void OnMouseDown()
