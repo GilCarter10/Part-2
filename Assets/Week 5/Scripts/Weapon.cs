@@ -7,7 +7,6 @@ public class Weapom : MonoBehaviour
 {
     public float speed = 5;
     float timer;
-    public GameObject knight;
     CapsuleCollider2D capsuleCollider;
     void Start()
     {
@@ -30,7 +29,7 @@ public class Weapom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        knight.SendMessage("TakeDamage", 1);
+        collision.SendMessage("TakeDamage", 1);
         Destroy(gameObject);
     }
 
