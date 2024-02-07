@@ -13,6 +13,7 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
     bool isDead = false;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,7 +46,7 @@ public class Knight : MonoBehaviour
     private void OnMouseDown()
     {
         if(isDead) return;
-        TakeDamage(1);
+        SendMessage("TakeDamage", 1);
         clickOnSelf = true;
     }
 
@@ -54,7 +55,7 @@ public class Knight : MonoBehaviour
         clickOnSelf = false;
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -66,6 +67,7 @@ public class Knight : MonoBehaviour
         {
             animator.SetTrigger("TakeDamage");
             isDead = false;
+
         }
         
     }
