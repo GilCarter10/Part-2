@@ -8,6 +8,10 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public void TakeDamage(float damage)
     {
-        slider.value -= damage;
+        //slider.value -= damage;
+    }
+    public void UpdateHealth()
+    {
+        slider.value = PlayerPrefs.GetFloat("Health", 0);
     }
 }

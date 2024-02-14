@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
     bool isDead = false;
-    
+    //PlayerPrefs savedHealth;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
+        health = PlayerPrefs.GetFloat("Health", maxHealth);
+
     }
 
     private void FixedUpdate()
@@ -46,7 +49,7 @@ public class Knight : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
-
+        SendMessage("UpdateHealth");
     }
 
     private void OnMouseDown()
@@ -65,6 +68,8 @@ public class Knight : MonoBehaviour
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
+        PlayerPrefs.SetFloat("Health", health);
+        
         if (health <= 0)
         {
             animator.SetTrigger("Death");
@@ -76,5 +81,10 @@ public class Knight : MonoBehaviour
 
         }
         
+    }
+
+    public void UpdateHealth()
+    {
+        PlayerPrefs.SetFloat("Health", health);
     }
 }
