@@ -8,8 +8,6 @@ using UnityEditor;
 public class penguin : MonoBehaviour
 {
 
-
-
     Animator animator;
     Rigidbody2D rb;
     public Vector2 walkDestination;
@@ -17,6 +15,8 @@ public class penguin : MonoBehaviour
     public float speed;
     bool sliding;
     float slideTimer = 0;
+    public float savedY;
+    public Vector3 pos;
 
     void Start()
     {
@@ -24,6 +24,13 @@ public class penguin : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         speed = 3;
         sliding = false;
+
+        pos = transform.position;
+        savedY = PlayerPrefs.GetFloat("savedY");
+        pos.y = savedY;
+
+        walkDestination = rb.position;
+
     }
 
     private void FixedUpdate()
@@ -39,7 +46,9 @@ public class penguin : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        pos = transform.position;
+
+        if (Input.GetMouseButtonDown(0))
         {
             walkDestination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
@@ -68,7 +77,14 @@ public class penguin : MonoBehaviour
             }
         }
 
+    }
 
+    public void SaveY()
+    {
+        PlayerPrefs.SetFloat("savedY", pos.y);
+
+        Debug.Log("jello");
 
     }
+
 }
