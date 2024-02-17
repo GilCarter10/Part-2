@@ -15,12 +15,15 @@ public class penguin : MonoBehaviour
     public Vector2 walkDestination;
     public Vector2 walkMovement;
     public float speed;
+    bool sliding;
+    float slideTimer = 0;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         speed = 3;
+        sliding = false;
     }
 
     private void FixedUpdate()
@@ -41,18 +44,31 @@ public class penguin : MonoBehaviour
             walkDestination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         animator.SetFloat("walkMovement", walkMovement.magnitude);
+
+        //slide
         if (walkMovement.magnitude > 0.1)
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                animator.SetBool("isSlide", true);
-                speed = 5;
-                
+                sliding = true;
             }
-        } else
-        {
-            animator.SetBool("isSlide", false);
-            speed = 3;
         }
+
+        if (sliding)
+        {
+            animator.SetBool("isSlide", true);
+            speed = 7;
+            slideTimer += Time.deltaTime;
+            if (slideTimer > 0.9)
+            {
+                sliding = false;
+                animator.SetBool("isSlide", false);
+                speed = 3;
+                slideTimer = 0;
+            }
+        }
+
+
+
     }
 }
