@@ -1328,6 +1328,34 @@ MonoBehaviour:
   walkMovement: {x: 0, y: 0}
   speed: 0
   savedY: 0
+  pos: {x: 0, y: 0, z: 0}
+  iceBlock: {fileID: 3904538255933159620, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+  lerpTimer: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  interpolation: 35
 --- !u!1 &733764554
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,8 +3299,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27.4, y: -6.5}
-  m_SizeDelta: {x: 40.6337, y: 3.3493}
+  m_AnchoredPosition: {x: 20.672, y: -6.35}
+  m_SizeDelta: {x: 32.341, y: 3.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293626910
 MonoBehaviour:
@@ -5995,6 +6023,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2186624391967461248
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247039708192882023, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904538255933159620, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
+      propertyPath: m_Name
+      value: ice block
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87398f26bf1007a49879bb00793e60d3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6004,3 +6089,4 @@ SceneRoots:
   - {fileID: 723125955}
   - {fileID: 1090085099}
   - {fileID: 961615972}
+  - {fileID: 2186624391967461248}

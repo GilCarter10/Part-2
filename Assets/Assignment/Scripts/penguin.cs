@@ -79,6 +79,11 @@ public class penguin : MonoBehaviour
 
     }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetTrigger("isAttack");
+
+        }
     public void SaveY()
     {
         PlayerPrefs.SetFloat("savedY", pos.y);
