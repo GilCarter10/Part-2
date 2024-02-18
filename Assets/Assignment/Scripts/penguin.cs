@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class penguin : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class penguin : MonoBehaviour
     float slideTimer = 0;
     public float savedY;
     public Vector3 pos;
+    public GameObject iceBlock;
+
 
     void Start()
     {
@@ -77,11 +80,13 @@ public class penguin : MonoBehaviour
             }
         }
 
+
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetTrigger("isAttack");
-
+            iceBlock.SendMessage("Attack");
         }
+
     }
 
 
