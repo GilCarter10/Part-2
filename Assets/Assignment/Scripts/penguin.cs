@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SocialPlatforms.Impl;
+using JetBrains.Annotations;
 
 public class penguin : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class penguin : MonoBehaviour
     float slideTimer = 0;
     public float savedY;
     public Vector3 pos;
-    public GameObject iceBlock;
+    public GameObject blockGroup;
+    bool stopMoving;
 
 
     void Start()
@@ -30,9 +32,8 @@ public class penguin : MonoBehaviour
 
         pos = transform.position;
         savedY = PlayerPrefs.GetFloat("savedY");
-        pos.y = savedY;
-
-        walkDestination = rb.position;
+        transform.position = new Vector3 (-8, savedY, 0);
+        walkDestination = transform.position;
 
     }
 
@@ -50,6 +51,7 @@ public class penguin : MonoBehaviour
     void Update()
     {
         pos = transform.position;
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -71,12 +73,14 @@ public class penguin : MonoBehaviour
             animator.SetBool("isSlide", true);
             speed = 7;
             slideTimer += Time.deltaTime;
+            blockGroup.BroadcastMessage("Attack");
             if (slideTimer > 0.9)
             {
                 sliding = false;
                 animator.SetBool("isSlide", false);
                 speed = 3;
                 slideTimer = 0;
+                
             }
         }
 
@@ -84,18 +88,46 @@ public class penguin : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetTrigger("isAttack");
-            iceBlock.SendMessage("Attack");
+            blockGroup.BroadcastMessage("Attack");
         }
 
+
+        if (stopMoving)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("isAttack");
+                blockGroup.BroadcastMessage("Attack");
+                stopMoving = false;
+            }
+        }
     }
 
+    public void StopMoving()
+    {
+        stopMoving = true;
+        walkMovement = Vector2.zero;
+        walkDestination = pos;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (sliding == false)
+        {
+            StopMoving();
+        }
+     
+    }
 
     public void SaveY()
     {
         PlayerPrefs.SetFloat("savedY", pos.y);
+        savedY = PlayerPrefs.GetFloat("savedY");
+    }
 
-        Debug.Log("jello");
-
+    public void EndRace()
+    {
+        PlayerPrefs.SetFloat("savedY", 0.49f);
     }
 
 }
