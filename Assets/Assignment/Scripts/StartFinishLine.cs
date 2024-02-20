@@ -3,10 +3,13 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class FinishLine : MonoBehaviour
+public class StartFinishLine : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public string type;
+    public GameObject timer;
+    
     void Start()
     {
         
@@ -20,6 +23,13 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SendMessage("EndRace");
+        if (type == "start")
+        {
+            timer.SendMessage("StartRace");
+        } else if (type == "finish")
+        {
+            timer.SendMessage("EndRace");
+        }
+        
     }
 }

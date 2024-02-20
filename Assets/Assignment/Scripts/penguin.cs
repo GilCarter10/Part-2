@@ -116,7 +116,7 @@ public class penguin : MonoBehaviour
         {
             StopMoving();
         }
-     
+
     }
 
     public void SaveY()
