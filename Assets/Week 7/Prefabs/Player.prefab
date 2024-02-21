@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3974784613912372724}
-  color1: {r: 0.063773066, g: 0.5377358, b: 0.027901389, a: 0}
-  color2: {r: 0.50980395, g: 0, b: 0, a: 0}
+  unSelectedColor: {r: 0.50980395, g: 0, b: 0, a: 1}
+  selectedColor: {r: 0.35141513, g: 1, b: 0.1273585, a: 1}
 --- !u!50 &7133553436138565728
 Rigidbody2D:
   serializedVersion: 4

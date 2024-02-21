@@ -8,10 +8,15 @@ using Unity.Android.Types;
 public class soccor_player : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    Rigidbody2D rb;
+    public float speed = 100;
+    public Color unSelectedColor;
+    public Color selectedColor;
 
     void Start()
     {
-        spriteRenderer.color = Color.red;
+        spriteRenderer.color = unSelectedColor;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -20,24 +25,29 @@ public class soccor_player : MonoBehaviour
      
     }
 
+    private void OnMouseDown()
+    {
+        Controller.SetCurrentSelection(this);
+    }
+
     public void Selected(bool isSelected)
     {
         if (isSelected)
         {
-            spriteRenderer.color = Color.green;
+            spriteRenderer.color = selectedColor;
         }
         else
         {
 
-            spriteRenderer.color = Color.red;
+            spriteRenderer.color = unSelectedColor;
          
         }
 
     }
 
-    private void OnMouseDown()
+    public void Move(Vector2 direction)
     {
-        Controller.SetCurrentSelection(this);
+        rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 
 }
