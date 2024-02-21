@@ -11,7 +11,7 @@ public class soccor_player : MonoBehaviour
 
     void Start()
     {
-        
+        spriteRenderer.color = Color.red;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class soccor_player : MonoBehaviour
         else
         {
 
-            spriteRenderer.color = Color.white;
+            spriteRenderer.color = Color.red;
          
         }
 
@@ -37,7 +37,7 @@ public class soccor_player : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Selected(true);
+        Controller.SetCurrentSelection(this);
     }
 
 }
