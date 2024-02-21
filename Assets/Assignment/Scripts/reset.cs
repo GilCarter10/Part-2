@@ -6,20 +6,14 @@ using UnityEngine;
 
 public class reset : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //this object is an invisble trigger where the penguin spawns in the first scene
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject timer;
+    public GameObject penguin;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) //when the penguin is in the trigger zone
     {
-        SendMessage("ResetTimer");
+        timer.SendMessage("ResetTimer"); //reset timer
+        penguin.SendMessage("ResetPlayer"); //reset player values
     }
 }

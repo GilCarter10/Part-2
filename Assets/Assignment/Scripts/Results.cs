@@ -11,19 +11,14 @@ public class Results : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
-        resultsText = GetComponent<TextMeshProUGUI>();
+        gameObject.SetActive(false); //not active until told
+        resultsText = GetComponent<TextMeshProUGUI>(); //get text mesh pro component
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void DisplayResults(Vector2 time)
     {
-        resultsText.text = "Your time was " + time.x.ToString("00") + ":" + time.y.ToString("00");
+        resultsText.text = "Your time was " + time.x.ToString("00") + ":" + time.y.ToString("00"); //text will show the time results given from the timer object
 
     }
 }

@@ -7,28 +7,19 @@ using System;
 
 public class StartFinishLine : MonoBehaviour
 {
-    public string type;
+    public string type; //is it the start line or finish line
     public GameObject timer;
-    
-    void Start()
-    {
-        
-    }
+    public GameObject penguin;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision) //when the penguin crosses the line
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (type == "start")
+        if (type == "start") //if its the start line
         {
-            timer.SendMessage("StartRace");
-        } else if (type == "finish")
+            timer.SendMessage("StartRace"); //start timer
+            penguin.SendMessage("StartRace"); //start stamina
+        } else if (type == "finish") //if its the finish line
         {
-            timer.SendMessage("EndRace");
+            timer.SendMessage("EndRace"); //stop the timer and display results
         }
         
     }
